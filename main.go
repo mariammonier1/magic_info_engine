@@ -2,6 +2,7 @@ package main
 
 import (
 	"magic_info_engine/adapter/deliveryAdapter"
+	"magic_info_engine/adapter/magicInfoAdapter"
 	messageDistributor "magic_info_engine/adapter/messagingAdapter"
 	"magic_info_engine/adapter/messagingAdapter/producers"
 	"magic_info_engine/domain"
@@ -16,8 +17,10 @@ var outputPortInstance outputPort.IOutputPort
 
 func init() {
 	messagingProducerPortInstance := producers.NewNatsProducer()
+	magicInfoHandelerPortInstance := magicInfoAdapter.NewMagicInfoAdapter()
 	outputPortInstance = outputPort.IOutputPort{
 		Producer:   messagingProducerPortInstance,
+		MagicInfoHandeler: magicInfoHandelerPortInstance,
 	}
 }
 

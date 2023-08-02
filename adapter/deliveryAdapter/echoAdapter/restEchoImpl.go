@@ -63,7 +63,7 @@ func (thisRE *RestEchoImpl) init() {
 	pingController := deliveryControllers.NewPingController(thisRE.router)
 	pingController.Control()
 
-	componentController := deliveryControllers.NewComponentController(thisRE.router, thisRE.domain)
-	componentController.Control()
+	magicInfoController := deliveryControllers.NewMagicInfoController(thisRE.router, thisRE.domain)
+	magicInfoController.Control()
 
 }

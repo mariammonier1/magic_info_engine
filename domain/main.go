@@ -1,21 +1,21 @@
 package domain
 
 import (
-	"magic_info_engine/domain/domianUsecase/component"
+	magicInfo "magic_info_engine/domain/domianUsecase/magicInfoDevices"
 	"magic_info_engine/port/domainPort"
-	"magic_info_engine/port/domainPort/componentPort"
+	"magic_info_engine/port/domainPort/magicInfoPort"
 	"magic_info_engine/port/outputPort"
 )
 
 type domainUseCase struct {
-	componentPort.IComponentDomainPort
+	magicInfoPort.IMagicInfoDevicesPort
 }
 
 func NewDomain(outputPort outputPort.IOutputPort) domainPort.IDomainPort {
 
-	componentUseCases := component.NewComponentUseCases()
+	magicInfoUseCases := magicInfo.NewMagicInfoUseCases(outputPort.MagicInfoHandeler)
 
 	return &domainUseCase{
-		componentUseCases,
+		magicInfoUseCases,
 	}
 }
